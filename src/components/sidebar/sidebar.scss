@@ -1,0 +1,57 @@
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 320px;
+  background-color: #264465;
+  color: #f0f0f0;
+
+  &__logo{
+    display: grid;
+    place-items: center;
+    padding: 50px 0 50px 0;
+
+  }
+  &__menu{
+    position: relative;
+    &__item {
+      display: flex;
+      align-items: center;
+      place-content: flex-start;
+      padding: 1rem 3rem;
+      font-size: 1rem;
+      font-weight: 300;
+      transition: color 0.3s ease-in-out;
+
+      &:hover {
+        background-color: #1784FF;
+      }
+
+      &.active{
+        background-color: #1784FF;
+      }
+
+
+      &__icon{
+        margin-right: 1rem;
+
+
+        i {
+          font-size: 1.75rem;
+        }
+      }
+    }
+  }
+  &__indicator {
+    position: absolute;
+    top:0;
+    left: 50%;
+    width: calc(100% - 40px);
+    border-radius:10px ;
+    background-color: #1784FF;
+    z-index: -1;
+    transform: translateX(-50%);
+    transition: 0.3s ease-in-out;
+  }
+}
