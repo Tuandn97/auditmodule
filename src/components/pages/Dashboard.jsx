@@ -1,4 +1,8 @@
+import PageTitle from "../pagetitle/PageTitle";
+
 const Dashboard = () => {
-    return <div>This is Blank page</div>
+    return (
+        <PageTitle>Dashboard</PageTitle>
+    )
 }
 export default Dashboard

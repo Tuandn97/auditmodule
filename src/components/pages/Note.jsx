@@ -1,4 +1,8 @@
+import PageTitle from "../pagetitle/PageTitle";
+
 const Note = () => {
-    return <div>This is Note page</div>
+    return (
+        <PageTitle>Note</PageTitle>
+    )
 }
 export default Note
