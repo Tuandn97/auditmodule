@@ -1,6 +1,6 @@
 import './member.scss'
 import { useEffect, useState } from "react";
-import PageTitle from "../../pagetitle/PageTitle";
+import PageTitle from "../../components/pagetitle/PageTitle";
 
 const Member = () => {
     const [members, setMembers] = useState([]);

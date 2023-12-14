@@ -1,4 +1,4 @@
-import PageTitle from "../pagetitle/PageTitle";
+import PageTitle from "../components/pagetitle/PageTitle";
 
 const Note = () => {
     return (

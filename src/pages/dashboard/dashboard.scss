@@ -1,0 +1,48 @@
+.survey__card {
+  position: relative;
+  margin: 20px 0 20px 0;
+  padding: 15px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  background-color: #ffffff;
+  max-width: 95%;
+  border-radius: 10px;
+  &__info h4 {
+    margin-bottom: 20px;
+    font-size: 1.25em;
+  }
+
+
+  &__line{
+    width: 2px;
+    height: 100%;
+    background-color: #ccc;
+    margin-right: 10px;
+  }
+  &__status {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 7px 0 0 22px;
+    color: #ffffff;
+    font-weight: bold;
+    transform: translateY(90%);
+    border-left: groove;
+    width: 160px;
+    border-left-color: white;
+    border-width: 3px;;
+
+
+    &.audited{
+      color: #dddddd;
+    }
+
+    &.new{
+      color: #FF0909;
+    }
+
+    &.processing{
+      color: #264465;
+    }
+  }
+
+}

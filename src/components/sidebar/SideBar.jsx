@@ -8,7 +8,7 @@ const sidebarNavItems = [
     {
         display: 'DashBoard',
         icon: <i className='bx bxs-dashboard'></i>,
-        to: '/',
+        to: '/dashboard',
         section : 'DashBoard'
     },
     {
