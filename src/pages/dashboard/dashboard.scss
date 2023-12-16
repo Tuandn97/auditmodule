@@ -11,6 +11,11 @@
     font-size: 1.25em;
   }
 
+  &:hover{
+    background-color: #264465;
+    color:#f0f0f0;
+  }
+
 
   &__line{
     width: 2px;
@@ -41,7 +46,7 @@
     }
 
     &.processing{
-      color: #264465;
+      color: #62C400;
     }
   }
 

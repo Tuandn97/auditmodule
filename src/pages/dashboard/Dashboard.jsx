@@ -1,6 +1,7 @@
 import PageTitle from "../../components/pagetitle/PageTitle";
 import { useEffect, useState } from "react";
 import "./dashboard.scss";
+import SurveyDetail from "../../components/surveydetail/SurveyDetail"
 
 const Dashboard = () => {
     const [surveys, setSurveys] = useState([]);
@@ -39,6 +40,8 @@ const Dashboard = () => {
                     </div>
                 </div>
             ))}
+
+            <SurveyDetail/>
         </div>
     );
 };
