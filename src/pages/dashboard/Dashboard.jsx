@@ -3,37 +3,6 @@ import { useEffect, useState } from "react";
 import "./dashboard.scss";
 import SurveyDetail from "../../components/surveydetail/SurveyDetail";
 
-const surveyData = [
-    {
-        question: 'Question 1:',
-        answers: ['Answer 1a', 'Answer 1b', 'Answer 1c']
-    },
-    {
-        question: 'Question 2:',
-        answers: ['Answer 2a', 'Answer 2b', 'Answer 2c']
-    },
-    {
-        question: 'Question 3:',
-        answers: ['Answer 3a', 'Answer 3b', 'Answer 3c']
-    },
-    {
-        question: 'Question 3:',
-        answers: ['Answer 3a', 'Answer 3b', 'Answer 3c']
-    },
-    {
-        question: 'Question 3:',
-        answers: ['Answer 3a', 'Answer 3b', 'Answer 3c']
-    },
-    {
-        question: 'Question 3:',
-        answers: ['Answer 3a', 'Answer 3b', 'Answer 3c']
-    },
-    {
-        question: 'Question 3:',
-        answers: ['Answer 3a', 'Answer 3b', 'Answer 3c']
-    }
-];
-
 const Dashboard = () => {
     const [surveys, setSurveys] = useState([]);
     const [selectedSurvey, setSelectedSurvey] = useState(false);
@@ -55,7 +24,13 @@ const Dashboard = () => {
     }, []);
 
     const handleSurveyClick = (survey) => {
-        setSelectedSurvey(survey);
+        // Send the survey ID to the backend
+        fetch("https://mocki.io/v1/ba0c3b6c-20ea-40c4-be90-93f834dc5516")
+        .then((response) => response.json())
+        .then((surveyData) => {
+            // Load the survey details based on the ID
+            setSelectedSurvey(surveyData);
+        })
     };
 
     return (
@@ -65,6 +40,7 @@ const Dashboard = () => {
             {selectedSurvey ? (
                 <div className="dashboard__survey__detail">
                     <SurveyDetail surveyData={selectedSurvey} onClickBack={setSelectedSurvey} />
+
                 </div>
             ) : (
                 <div className="dashboard__survey__list">
@@ -72,7 +48,7 @@ const Dashboard = () => {
                         <div
                             key={survey.id}
                             className="survey__card"
-                            onClick={() => handleSurveyClick(surveyData)}
+                            onClick={() => handleSurveyClick(survey)}
                         >
                             <div className="survey__card__content">
                                 <div className="survey__card__info">
