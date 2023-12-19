@@ -4,8 +4,8 @@ import {BrowserRouter, Routes, Route} from "react-router-dom";
 import AppLayout from "./components/layout/AppLayout";
 import Dashboard from "./pages/dashboard/Dashboard";
 import Member from "./pages/member/Member";
-import Audit from "./pages/Audit";
-import Note from "./pages/Note";
+import Audit from "./pages/audit/Audit";
+import Note from "./pages/note/Note";
 
 
 function App() {
