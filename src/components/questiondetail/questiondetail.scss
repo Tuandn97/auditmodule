@@ -1,0 +1,27 @@
+.question__detail__container {
+    margin-right: 70px;
+}
+
+.question__detail__heading__wrapper {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.question__detail__heading__question {
+    margin-left: 40px;
+    font-size: 1.5rem;
+}
+
+.answer__detail__card__content {
+    width: 100%;
+    margin-bottom: 10px;
+    position: relative; 
+    background-color: white;
+}
+
+.note_buttom {
+    position: absolute; 
+    bottom: 5px; 
+    right: 5px; 
+}

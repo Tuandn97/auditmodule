@@ -2,7 +2,7 @@ import React from 'react';
 import { Card, CardContent, Typography, Button } from '@material-ui/core';
 import './surveydetail.scss';
 
-const SurveyDetailPage = ({ onClickBack, surveyData }) => {
+const SurveyDetailPage = ({ onClickBack, onClickQuestion, surveyData }) => {
   return (
     <div className="survey__detail__wrapper">
       <div className="survey__detail__heading__wrapper">
@@ -23,7 +23,7 @@ const SurveyDetailPage = ({ onClickBack, surveyData }) => {
 
       <div className="survey__detail__card__container">
         {surveyData.questions.map((questionItem) => (
-          <Card key={questionItem.question_id} variant="outlined" className="survey__detail__card__content">
+          <Card key={questionItem.question_id} variant="outlined" className="survey__detail__card__content" onClick={() => onClickQuestion(questionItem.question_id)}>
             <CardContent>
               <Typography variant="h6" component="div" gutterBottom className="survey__detail__card__content__question">
                 {questionItem.question}

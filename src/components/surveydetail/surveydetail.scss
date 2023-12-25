@@ -20,8 +20,11 @@
     margin-bottom: 10px;
     border-radius: 10px;
 
-    &__question{
 
+
+    &:hover{
+      background-color:#264465;
+      color: #fff;
     }
 
     &__answer{
