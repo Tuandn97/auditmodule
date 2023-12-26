@@ -41,7 +41,7 @@ const Dashboard = () => {
         //send the question ID to the backend 
         fetch("https://mocki.io/v1/194d4f0d-5b5a-450c-bac4-c9e393e52a5c") // with question id
             .then((response)=> response.json())
-            .then((questionData)=> {
+            .then((questionData)=> {    
                 //Load the question details based on the ID
                 setPageData({
                     ...pageData,
