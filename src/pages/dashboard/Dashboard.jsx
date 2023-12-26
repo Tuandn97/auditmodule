@@ -66,6 +66,7 @@ const Dashboard = () => {
         setSelectedPage("2");
     };
 
+
     return (
         <div className="dashboard__container">
             <PageTitle>Dashboard</PageTitle>
@@ -78,6 +79,7 @@ const Dashboard = () => {
                 <div className="dashboard__survey__detail">
                     <SurveyDetail 
                     surveyData={pageData.surveyDetail} 
+                    
                     onClickBack={() => {
                         setSelectedPage("1");
                         setPageData({
