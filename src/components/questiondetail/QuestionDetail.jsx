@@ -6,7 +6,7 @@ import {
   Grid,
   Box,
   TextField,
-} from "@material-ui/core";
+} from "@mui/material";
 import "./questiondetail.scss";
 import { useState } from "react";
 import axios from "axios";
@@ -58,10 +58,14 @@ const QuestionDetail = ({ onClickBack, questionData }) => {
         <div className="question__detail__heading__question">
           {questionData.question}
         </div>
+        <div />
       </div>
       <div className="answer__detail__container">
         {questionData.user_responses.map((responseItem) => (
           <Card
+            sx={{
+              borderRadius: "10px",
+            }}
             key={responseItem.response_id}
             variant="outlined"
             className="answer__detail__card__content"
@@ -111,15 +115,24 @@ const QuestionDetail = ({ onClickBack, questionData }) => {
                   noValidate
                   autoComplete="off"
                 >
+                  <div className="note__form__wrap_textarea">
+                    <TextField
+                      sx={{
+                        marginBottom: "16px",
+                      }}
+                      className="note__form__textarea"
+                      multiline
+                      label="Private Note"
+                      variant="outlined"
+                      value={privateNote}
+                      onChange={(e) => setPrivateNote(e.target.value)}
+                    />
+                  </div>
+
                   <TextField
-                    className="note__form__textarea"
-                    multiline
-                    label="Private Note"
-                    variant="outlined"
-                    value={privateNote}
-                    onChange={(e) => setPrivateNote(e.target.value)}
-                  />
-                  <TextField
+                    sx={{
+                      marginBottom: "16px",
+                    }}  
                     className="note__form__textarea"
                     multiline
                     label="Public Note"
@@ -127,6 +140,7 @@ const QuestionDetail = ({ onClickBack, questionData }) => {
                     value={publicNote}
                     onChange={(e) => setPublicNote(e.target.value)}
                   />
+
                   <Button
                     variant="contained"
                     color="primary"

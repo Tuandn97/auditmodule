@@ -6,6 +6,7 @@
   display: flex;
   align-items: center;
   margin-bottom: 20px;
+  justify-content: space-between;
 }
 
 .question__detail__heading__question {
@@ -21,6 +22,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  border-radius: 10px;
 }
 
 .note_buttom {
@@ -28,9 +30,16 @@
   margin: 0 auto;
   left: 90%;
 }
+.note__form__wrap_textarea {
+  margin-top: 10px;
+}
 .note__form__textarea {
   width: 100%;
   box-sizing: border-box;
+}
+
+.wrap__note__buttom {
+  margin-top: 20px;
 }
 
 .save_buttom {

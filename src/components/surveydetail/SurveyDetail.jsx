@@ -34,7 +34,7 @@ const SurveyDetailPage = ({ onClickBack, onClickQuestion, surveyData }) => {
         <Typography variant="h4" component="h1" gutterBottom>
           {surveyData.survey_title}
         </Typography>
-        {surveyStatus === "new" && (
+        {surveyStatus.toLowerCase() === "new" && (
           <Button
             className="survey__detail__header__button"
             variant="contained"
