@@ -66,7 +66,7 @@ const QuestionDetail = ({ onClickBack, questionData }) => {
             sx={{
               borderRadius: "10px",
             }}
-            key={responseItem.response_id}
+            key={responseItem.respond_id}
             variant="outlined"
             className="answer__detail__card__content"
           >
@@ -82,21 +82,21 @@ const QuestionDetail = ({ onClickBack, questionData }) => {
                     gutterBottom
                     className="answer__detail__card__content_userdetail_name"
                   >
-                    Name: {responseItem.user_name}
+                    Name: {responseItem.auditee_name}
                   </Typography>
                   <Typography
                     component="div"
                     gutterBottom
                     className="answer__detail__card__content_userdetail_age"
                   >
-                    Age: {responseItem.user_age}
+                    Age: {responseItem.auditee_age}
                   </Typography>
                   <Typography
                     component="div"
                     gutterBottom
                     className="answer__detail__card__content_userdetail_department"
                   >
-                    Department: {responseItem.user_department}
+                    Department: {responseItem.auditee_department}
                   </Typography>
                 </Grid>
                 <Grid
@@ -104,11 +104,11 @@ const QuestionDetail = ({ onClickBack, questionData }) => {
                   xs={8}
                   className="answer__detail__card__content_response"
                 >
-                  Answer: {responseItem.response}
+                  Answer: {responseItem.answer_text}
                 </Grid>
               </Grid>
 
-              {showNote && selectedResponseId === responseItem.response_id && (
+              {showNote && selectedResponseId === responseItem.respond_id && (
                 <Box
                   className="note__form"
                   component="form"
@@ -132,7 +132,7 @@ const QuestionDetail = ({ onClickBack, questionData }) => {
                   <TextField
                     sx={{
                       marginBottom: "16px",
-                    }}  
+                    }}
                     className="note__form__textarea"
                     multiline
                     label="Public Note"
@@ -141,37 +141,55 @@ const QuestionDetail = ({ onClickBack, questionData }) => {
                     onChange={(e) => setPublicNote(e.target.value)}
                   />
 
+                  <Box
+                    sx={{
+                      display: "flex",
+                      justifyContent: "center",
+                    }}
+                  >
+                    <Button
+                      sx={{
+                        marginRight: "16px",
+                      }}
+                      variant="contained"
+                      color="primary"
+                      className="save_buttom"
+                      onClick={handleSaveNote}
+                    >
+                      Save
+                    </Button>
+                    <Button
+                      variant="outlined"
+                      color="primary"
+                      className="cancel_buttom"
+                      onClick={handleCancelNote}
+                    >
+                      Cancle
+                    </Button>
+                  </Box>
+                </Box>
+              )}
+              <Box
+                sx={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+                {!showNote && (
                   <Button
                     variant="contained"
                     color="primary"
-                    className="save_buttom"
-                    onClick={handleSaveNote}
+                    className="note_buttom"
+                    onClick={() => {
+                      setShowNote(true);
+                      setSelectedResponseId(responseItem.respond_id);
+                    }}
                   >
-                    Save
+                    Note
                   </Button>
-                  <Button
-                    variant="outlined"
-                    color="primary"
-                    className="cancel_buttom"
-                    onClick={handleCancelNote}
-                  >
-                    Cancle
-                  </Button>
-                </Box>
-              )}
-              {!showNote && (
-                <Button
-                  variant="contained"
-                  color="primary"
-                  className="note_buttom"
-                  onClick={() => {
-                    setShowNote(true);
-                    setSelectedResponseId(responseItem.response_id);
-                  }}
-                >
-                  Note
-                </Button>
-              )}
+                )}
+              </Box>
             </CardContent>
           </Card>
         ))}

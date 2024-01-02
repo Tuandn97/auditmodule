@@ -15,7 +15,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     //https://mocki.io/v1/899c8c5f-43b3-46a2-b0a7-4a0f625c41d7
-    //https://8c7b-118-189-129-143.ngrok-free.app/surveys
+    //https://4a72-103-6-151-182.ngrok-free.app/surveys
     fetch("https://mocki.io/v1/899c8c5f-43b3-46a2-b0a7-4a0f625c41d7", {
       method: "GET",
       headers: new Headers({
@@ -35,29 +35,43 @@ const Dashboard = () => {
       });
   }, []);
 
-  const handleQuestionClick = (question) => {
-    //send the question ID to the backend
-    fetch("https://mocki.io/v1/194d4f0d-5b5a-450c-bac4-c9e393e52a5c") // with question id
+  const handleQuestionClick = (questionId) => {
+    // Send the question ID to the backend
+    //https://mocki.io/v1/194d4f0d-5b5a-450c-bac4-c9e393e52a5c
+    //`https://4a72-103-6-151-182.ngrok-free.app/survey_respond/${questionId}`
+    fetch(
+      "https://mocki.io/v1/194d4f0d-5b5a-450c-bac4-c9e393e52a5c",
+      {
+        method: "GET",
+        headers: new Headers({
+          "ngrok-skip-browser-warning": "69420",
+        }),
+      }
+    )
       .then((response) => response.json())
       .then((questionData) => {
-        //Load the question details based on the ID
+        // Load the question details based on the ID
         setPageData({
           ...pageData,
           questionDetail: questionData,
         });
+        console.log(questionData);
       });
     setSelectedPage("3");
   };
 
   const handleSurveyClick = (survey) => {
-    //https://mocki.io/v1/ba0c3b6c-20ea-40c4-be90-93f834dc5516
-    //`https://8c7b-118-189-129-143.ngrok-free.app/questions/survey/${survey.Survey_ID}`
-    fetch("https://mocki.io/v1/ba0c3b6c-20ea-40c4-be90-93f834dc5516", {
-      method: "GET",
-      headers: new Headers({
-        "ngrok-skip-browser-warning": "69420",
-      }),
-    })
+    //https://mocki.io/v1/6c482d68-4dcd-4587-95bd-3ed9161db7ad
+    //`https://4a72-103-6-151-182.ngrok-free.app/questions/survey/${survey.Survey_ID}`
+    fetch(
+      "https://mocki.io/v1/6c482d68-4dcd-4587-95bd-3ed9161db7ad",
+      {
+        method: "GET",
+        headers: new Headers({
+          "ngrok-skip-browser-warning": "69420",
+        }),
+      }
+    )
       .then((response) => response.json())
       .then((surveyData) => {
         setPageData((prevPageData) => ({
@@ -113,7 +127,7 @@ const Dashboard = () => {
                 surveyDetail: "",
               });
             }}
-            onClickQuestion={handleQuestionClick}
+            onClickQuestion={(questionId) => handleQuestionClick(questionId)}
           />
         </div>
       )}

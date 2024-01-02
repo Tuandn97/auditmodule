@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Card, CardContent, Typography, Button } from "@material-ui/core";
+import { Card, CardContent, Typography, Button } from "@mui/material";
 import "./surveydetail.scss";
 import axios from "axios";
 
@@ -34,7 +34,7 @@ const SurveyDetailPage = ({ onClickBack, onClickQuestion, surveyData }) => {
         <Typography variant="h4" component="h1" gutterBottom>
           {surveyData.survey_title}
         </Typography>
-        {surveyStatus.toLowerCase() === "new" && (
+        {surveyStatus.toLowerCase() === "new" ? (
           <Button
             className="survey__detail__header__button"
             variant="contained"
@@ -43,6 +43,8 @@ const SurveyDetailPage = ({ onClickBack, onClickQuestion, surveyData }) => {
           >
             New Audit
           </Button>
+        ) : (
+          <div></div>
         )}
       </div>
 
@@ -70,7 +72,10 @@ const SurveyDetailPage = ({ onClickBack, onClickQuestion, surveyData }) => {
                   component="div"
                   className="survey__detail__card__content__answer"
                 >
-                  {response.response}
+                  <Typography>{response.response}</Typography>
+                  <Typography sx={{ color: "#BBC5CF" }}>
+                    {response.count} responses{" "}
+                  </Typography>
                 </Typography>
               ))}
             </CardContent>
