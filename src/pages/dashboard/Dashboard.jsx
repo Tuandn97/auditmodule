@@ -55,7 +55,6 @@ const Dashboard = () => {
           ...pageData,
           questionDetail: questionData,
         });
-        console.log(questionData);
       });
     setSelectedPage("3");
   };
@@ -85,7 +84,6 @@ const Dashboard = () => {
   return (
     <div className="dashboard__container">
       <PageTitle>Dashboard</PageTitle>
-
       {pageData.questionDetail === "" &&
         pageData.surveyDetail === "" &&
         pageData.surveyList === "" && (

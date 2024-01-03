@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Card, CardContent, Typography, Button } from "@mui/material";
+import { Card, CardContent, Typography, Button, Box } from "@mui/material";
 import "./surveydetail.scss";
 import axios from "axios";
 
@@ -20,7 +20,9 @@ const SurveyDetailPage = ({ onClickBack, onClickQuestion, surveyData }) => {
         // Handle any error that occurred during the API call
         console.error("Error updating survey status:", error);
       });
+      
   };
+  
   return (
     <div className="survey__detail__wrapper">
       <div className="survey__detail__heading__wrapper">
@@ -44,7 +46,11 @@ const SurveyDetailPage = ({ onClickBack, onClickQuestion, surveyData }) => {
             New Audit
           </Button>
         ) : (
-          <div></div>
+          <Box sx={{
+            color: "#BBC5CF",
+            textTransform: "uppercase",
+            fontWeight: "bold",
+          }}>{surveyStatus}</Box>
         )}
       </div>
 
