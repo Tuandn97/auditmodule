@@ -17,7 +17,7 @@ const Dashboard = () => {
   useEffect(() => {
     //https://mocki.io/v1/899c8c5f-43b3-46a2-b0a7-4a0f625c41d7
     //https://45a1-118-189-129-143.ngrok-free.app/surveys
-    fetch("https://e0ef-118-189-129-143.ngrok-free.app/surveys", {
+    fetch("https://mocki.io/v1/899c8c5f-43b3-46a2-b0a7-4a0f625c41d7", {
       method: "GET",
       headers: new Headers({
         "ngrok-skip-browser-warning": "69420",
@@ -40,15 +40,12 @@ const Dashboard = () => {
     // Send the question ID to the backend
     //https://mocki.io/v1/194d4f0d-5b5a-450c-bac4-c9e393e52a5c
     //`https://739a-118-189-129-143.ngrok-free.app/survey_respond/${questionId}`
-    fetch(
-      `https://e0ef-118-189-129-143.ngrok-free.app/survey_respond/${questionId}`,
-      {
-        method: "GET",
-        headers: new Headers({
-          "ngrok-skip-browser-warning": "69420",
-        }),
-      }
-    )
+    fetch("https://mocki.io/v1/899c8c5f-43b3-46a2-b0a7-4a0f625c41d7", {
+      method: "GET",
+      headers: new Headers({
+        "ngrok-skip-browser-warning": "69420",
+      }),
+    })
       .then((response) => response.json())
       .then((questionData) => {
         // Load the question details based on the ID
@@ -63,15 +60,12 @@ const Dashboard = () => {
   const handleSurveyClick = (survey) => {
     //https://mocki.io/v1/6c482d68-4dcd-4587-95bd-3ed9161db7ad
     //`https://739a-118-189-129-143.ngrok-free.app/questions/survey/${survey.Survey_ID}`
-    fetch(
-      `https://e0ef-118-189-129-143.ngrok-free.app/questions/survey/${survey.Survey_ID}`,
-      {
-        method: "GET",
-        headers: new Headers({
-          "ngrok-skip-browser-warning": "69420",
-        }),
-      }
-    )
+    fetch("https://mocki.io/v1/6c482d68-4dcd-4587-95bd-3ed9161db7ad", {
+      method: "GET",
+      headers: new Headers({
+        "ngrok-skip-browser-warning": "69420",
+      }),
+    })
       .then((response) => response.json())
       .then((surveyData) => {
         setPageData((prevPageData) => ({
