@@ -11,7 +11,7 @@ import "./questiondetail.scss";
 import { useState } from "react";
 import axios from "axios";
 
-const QuestionDetail = ({ onClickBack, questionData }) => {
+const QuestionDetail = ({ onClickBack, questionData, surveyStatus }) => {
   const [privateNote, setPrivateNote] = useState("");
   const [publicNote, setPublicNote] = useState("");
   const [showNote, setShowNote] = useState(false);
@@ -176,11 +176,11 @@ const QuestionDetail = ({ onClickBack, questionData }) => {
                   alignItems: "center",
                 }}
               >
-                {!showNote && (
+                {!showNote && surveyStatus.toLowerCase() === "processing" && (
                   <Button
                     variant="contained"
                     color="primary"
-                    className="note_buttom"
+                    className="note_button"
                     onClick={() => {
                       setShowNote(true);
                       setSelectedResponseId(responseItem.respond_id);

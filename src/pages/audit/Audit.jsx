@@ -14,14 +14,7 @@ const Audit = () => {
     try {
       const response = await fetch(
         // "https://mocki.io/v1/4da9a637-4163-432b-a93b-4c5e99d73762"
-        "https://mocki.io/v1/4da9a637-4163-432b-a93b-4c5e99d73762",
-        {
-          method: "GET",
-          headers: new Headers({
-            "ngrok-skip-browser-warning": "69420",
-          }),
-        }
-      );
+        "https://mocki.io/v1/4da9a637-4163-432b-a93b-4c5e99d73762");
       const data = await response.json();
       setData(data);
     } catch (error) {

@@ -12,17 +12,13 @@ const Dashboard = () => {
     surveyDetail: "",
     questionDetail: "",
   });
-  //const [surveyStatus, setSurveyStatus] = useState("");
+
+  const [surveyStatus, setSurveyStatus] = useState("");
 
   useEffect(() => {
     //https://mocki.io/v1/899c8c5f-43b3-46a2-b0a7-4a0f625c41d7
     //https://45a1-118-189-129-143.ngrok-free.app/surveys
-    fetch("https://mocki.io/v1/899c8c5f-43b3-46a2-b0a7-4a0f625c41d7", {
-      method: "GET",
-      headers: new Headers({
-        "ngrok-skip-browser-warning": "69420",
-      }),
-    })
+    fetch("http://127.0.0.1:5000/surveys")
       .then((response) => response.json())
       .then((json) => {
         setPageData({
@@ -40,12 +36,7 @@ const Dashboard = () => {
     // Send the question ID to the backend
     //https://mocki.io/v1/194d4f0d-5b5a-450c-bac4-c9e393e52a5c
     //`https://739a-118-189-129-143.ngrok-free.app/survey_respond/${questionId}`
-    fetch("https://mocki.io/v1/899c8c5f-43b3-46a2-b0a7-4a0f625c41d7", {
-      method: "GET",
-      headers: new Headers({
-        "ngrok-skip-browser-warning": "69420",
-      }),
-    })
+    fetch(`http://127.0.0.1:5000/survey_respond/${questionId}`)
       .then((response) => response.json())
       .then((questionData) => {
         // Load the question details based on the ID
@@ -60,12 +51,7 @@ const Dashboard = () => {
   const handleSurveyClick = (survey) => {
     //https://mocki.io/v1/6c482d68-4dcd-4587-95bd-3ed9161db7ad
     //`https://739a-118-189-129-143.ngrok-free.app/questions/survey/${survey.Survey_ID}`
-    fetch("https://mocki.io/v1/6c482d68-4dcd-4587-95bd-3ed9161db7ad", {
-      method: "GET",
-      headers: new Headers({
-        "ngrok-skip-browser-warning": "69420",
-      }),
-    })
+    fetch(`http://127.0.0.1:5000/questions/survey/${survey.Survey_ID}`)
       .then((response) => response.json())
       .then((surveyData) => {
         setPageData((prevPageData) => ({
@@ -73,8 +59,10 @@ const Dashboard = () => {
           surveyDetail: {
             ...surveyData,
             survey_id: survey.Survey_ID,
+            survey_status: survey.Survey_Status,
           },
         }));
+        setSurveyStatus(survey.Survey_Status);
       });
     setSelectedPage("2");
   };
@@ -132,6 +120,8 @@ const Dashboard = () => {
         <div className="dashboard__question__detail">
           <QuestionDetail
             questionData={pageData.questionDetail}
+            surveyId={pageData.surveyDetail.survey_id}
+            surveyStatus={surveyStatus}
             onClickBack={() => {
               setSelectedPage("2");
               setPageData({

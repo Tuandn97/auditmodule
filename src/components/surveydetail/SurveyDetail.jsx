@@ -8,18 +8,18 @@ const SurveyDetailPage = ({ onClickBack, onClickQuestion, surveyData }) => {
   const handleNewAuditClick = (surveyData) => {
     console.log(surveyData.survey_id);
     setSurveyStatus("processing");
-    
+
     // Create a new instance of Axios with the desired headers
     const axiosInstance = axios.create({
       headers: {
-        "ngrok-skip-browser-warning": "true"
-      }
+        "ngrok-skip-browser-warning": "true",
+      },
     });
-  
+
     // Send the updated survey status to the backend using the custom Axios instance
     axiosInstance
-      .post("https://e0ef-118-189-129-143.ngrok-free.app/audit", {
-        surveyId: surveyData.survey_id
+      .post("http://127.0.0.1:5000/audit", {
+        surveyId: surveyData.survey_id,
       })
       .then((response) => {
         console.log("Survey status updated successfully:", response.data);
@@ -32,7 +32,7 @@ const SurveyDetailPage = ({ onClickBack, onClickQuestion, surveyData }) => {
     setSurveyStatus("audited");
     // Send the updated survey status to the backend using Axios
     axios
-      .post("https://e0ef-118-189-129-143.ngrok-free.app/audit", {
+      .post("http://127.0.0.1:5000/audit", {
         surveyId: surveyData.survey_id,
         //surveyStatus: "audited",
       })
