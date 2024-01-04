@@ -12,11 +12,12 @@ const Dashboard = () => {
     surveyDetail: "",
     questionDetail: "",
   });
+  //const [surveyStatus, setSurveyStatus] = useState("");
 
   useEffect(() => {
     //https://mocki.io/v1/899c8c5f-43b3-46a2-b0a7-4a0f625c41d7
-    //https://4a72-103-6-151-182.ngrok-free.app/surveys
-    fetch("https://mocki.io/v1/899c8c5f-43b3-46a2-b0a7-4a0f625c41d7", {
+    //https://45a1-118-189-129-143.ngrok-free.app/surveys
+    fetch("https://e0ef-118-189-129-143.ngrok-free.app/surveys", {
       method: "GET",
       headers: new Headers({
         "ngrok-skip-browser-warning": "69420",
@@ -38,9 +39,9 @@ const Dashboard = () => {
   const handleQuestionClick = (questionId) => {
     // Send the question ID to the backend
     //https://mocki.io/v1/194d4f0d-5b5a-450c-bac4-c9e393e52a5c
-    //`https://4a72-103-6-151-182.ngrok-free.app/survey_respond/${questionId}`
+    //`https://739a-118-189-129-143.ngrok-free.app/survey_respond/${questionId}`
     fetch(
-      "https://mocki.io/v1/194d4f0d-5b5a-450c-bac4-c9e393e52a5c",
+      `https://e0ef-118-189-129-143.ngrok-free.app/survey_respond/${questionId}`,
       {
         method: "GET",
         headers: new Headers({
@@ -61,9 +62,9 @@ const Dashboard = () => {
 
   const handleSurveyClick = (survey) => {
     //https://mocki.io/v1/6c482d68-4dcd-4587-95bd-3ed9161db7ad
-    //`https://4a72-103-6-151-182.ngrok-free.app/questions/survey/${survey.Survey_ID}`
+    //`https://739a-118-189-129-143.ngrok-free.app/questions/survey/${survey.Survey_ID}`
     fetch(
-      "https://mocki.io/v1/6c482d68-4dcd-4587-95bd-3ed9161db7ad",
+      `https://e0ef-118-189-129-143.ngrok-free.app/questions/survey/${survey.Survey_ID}`,
       {
         method: "GET",
         headers: new Headers({
@@ -75,7 +76,10 @@ const Dashboard = () => {
       .then((surveyData) => {
         setPageData((prevPageData) => ({
           ...prevPageData,
-          surveyDetail: surveyData,
+          surveyDetail: {
+            ...surveyData,
+            survey_id: survey.Survey_ID,
+          },
         }));
       });
     setSelectedPage("2");
