@@ -10,19 +10,16 @@ const SurveyDetailPage = ({ onClickBack, onClickQuestion, surveyData }) => {
     setSurveyStatus("processing");
 
     // Create a new instance of Axios with the desired headers
-    const axiosInstance = axios.create({
-      headers: {
-        "ngrok-skip-browser-warning": "true",
-      },
-    });
+    const axiosInstance = axios.create();
 
     // Send the updated survey status to the backend using the custom Axios instance
     axiosInstance
-      .post("http://127.0.0.1:5000/audit", {
-        surveyId: surveyData.survey_id,
+      .post("http://127.0.0.1:5000/add_audit", {
+        survey_title: surveyData.survey_title,
       })
       .then((response) => {
         console.log("Survey status updated successfully:", response.data);
+        console.log("Data returned by the backend:", response.data);
       })
       .catch((error) => {
         console.error("Error updating survey status:", error);
