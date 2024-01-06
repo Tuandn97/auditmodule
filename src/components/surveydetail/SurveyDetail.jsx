@@ -20,6 +20,7 @@ const SurveyDetailPage = ({ onClickBack, onClickQuestion, surveyData }) => {
       .then((response) => {
         console.log("Survey status updated successfully:", response.data);
         console.log("Data returned by the backend:", response.data);
+        window.location.reload();
       })
       .catch((error) => {
         console.error("Error updating survey status:", error);
