@@ -12,7 +12,7 @@ import {
   Snackbar,
 } from "@mui/material";
 import "./questiondetail.scss";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 
 const QuestionDetail = ({ onClickBack, questionData, surveyStatus }) => {
@@ -22,6 +22,7 @@ const QuestionDetail = ({ onClickBack, questionData, surveyStatus }) => {
   const [selectedResponseId, setSelectedResponseId] = useState("");
   const [statusMessage, setStatusMessage] = useState("");
   const [showStatus, setShowStatus] = useState(false);
+  const [noteResponseIds, setNoteResponseIds] = useState([]);
 
   const handleSaveNote = () => {
     // Send the private and public notes to the backend
@@ -62,6 +63,21 @@ const QuestionDetail = ({ onClickBack, questionData, surveyStatus }) => {
     setShowNote(false);
     setSelectedResponseId(null);
   };
+
+  useEffect(() => {
+    fetch("http://127.0.0.1:5000/auditor_note_data")
+      .then((response) => response.json())
+      .then((data) => {
+        const responseIds = data.survey_responses.map(
+          (response) => response.response_id
+        );
+        setNoteResponseIds(responseIds);
+        //console.log("Response IDs:", responseIds);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  }, []);
 
   return (
     <div className="question__detail__container">
@@ -173,6 +189,9 @@ const QuestionDetail = ({ onClickBack, questionData, surveyStatus }) => {
                       color="primary"
                       className="save_buttom"
                       onClick={handleSaveNote}
+                      disabled={noteResponseIds.includes(
+                        parseInt(selectedResponseId)
+                      )}
                     >
                       Save
                     </Button>
@@ -203,6 +222,12 @@ const QuestionDetail = ({ onClickBack, questionData, surveyStatus }) => {
                       setShowNote(true);
                       setSelectedResponseId(responseItem.respond_id);
                     }}
+                    disabled={
+                      noteResponseIds.length > 0 &&
+                      noteResponseIds.includes(
+                        parseInt(responseItem.respond_id)
+                      )
+                    }
                   >
                     Note
                   </Button>

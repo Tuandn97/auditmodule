@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Box } from "@mui/material";
+import { Box, Skeleton, Typography } from "@mui/material";
 import PageTitle from "../../components/pagetitle/PageTitle";
 import UserNote from "../../components/note/UserNote";
 
@@ -13,7 +13,8 @@ const Note = () => {
   const fetchData = async () => {
     try {
       const response = await fetch(
-        "https://mocki.io/v1/4da9a637-4163-432b-a93b-4c5e99d73762"
+        //"https://mocki.io/v1/4da9a637-4163-432b-a93b-4c5e99d73762"
+        "http://127.0.0.1:5000/auditor_note_data"
       );
       const data = await response.json();
       setData(data);
@@ -32,7 +33,7 @@ const Note = () => {
       }}
     >
       <PageTitle>Notes</PageTitle>
-      {data ? (
+      {data && data.auditor_notes.length > 0 ? (
         <ul>
           {data.auditees.map((auditee) => (
             <UserNote
@@ -45,7 +46,19 @@ const Note = () => {
           ))}
         </ul>
       ) : (
-        <p>You haven't created any notes yet.</p>
+        <Box sx={{ width: "100%" }}>
+          <Typography
+            sx={{
+              marginBottom: "16px",
+              fontSize: "1.5rem",
+            }}
+          >
+            You haven't created any notes yet
+          </Typography>
+          <Skeleton />
+          <Skeleton animation="wave" />
+          <Skeleton animation={false} />
+        </Box>
       )}
     </Box>
   );
