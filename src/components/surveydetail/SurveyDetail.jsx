@@ -27,18 +27,23 @@ const SurveyDetailPage = ({ onClickBack, onClickQuestion, surveyData }) => {
       });
   };
   const handleEndAuditClick = (surveyData) => {
+    console.log(surveyData.survey_id);
     setSurveyStatus("audited");
-    // Send the updated survey status to the backend using Axios
-    axios
-      .post("http://127.0.0.1:5000/audit", {
-        surveyId: surveyData.survey_id,
-        //surveyStatus: "audited",
+
+    // Create a new instance of Axios with the desired headers
+    const axiosInstance = axios.create();
+
+    // Send the updated survey status to the backend using the custom Axios instance
+    axiosInstance
+      .post("http://127.0.0.1:5000/end_audit", {
+        survey_title: surveyData.survey_title,
       })
       .then((response) => {
         console.log("Survey status updated successfully:", response.data);
+        console.log("Data returned by the backend:", response.data);
+        window.location.reload();
       })
       .catch((error) => {
-        // Handle any error that occurred during the API call
         console.error("Error updating survey status:", error);
       });
   };

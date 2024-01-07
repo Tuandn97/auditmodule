@@ -6,6 +6,10 @@ import {
   Grid,
   Box,
   TextField,
+  Modal,
+  Backdrop,
+  Fade,
+  Snackbar,
 } from "@mui/material";
 import "./questiondetail.scss";
 import { useState } from "react";
@@ -16,6 +20,8 @@ const QuestionDetail = ({ onClickBack, questionData, surveyStatus }) => {
   const [publicNote, setPublicNote] = useState("");
   const [showNote, setShowNote] = useState(false);
   const [selectedResponseId, setSelectedResponseId] = useState("");
+  const [statusMessage, setStatusMessage] = useState("");
+  const [showStatus, setShowStatus] = useState(false);
   const handleSaveNote = () => {
     // Send the private and public notes to the backend
     const noteData = {
@@ -26,14 +32,18 @@ const QuestionDetail = ({ onClickBack, questionData, surveyStatus }) => {
 
     /// Send the note data to the backend using Axios
     axios
-      .post("/api/save-note", noteData)
+      .post("http://127.0.0.1:5000/add_audit_note", noteData)
       .then((response) => {
         // Note saved successfully
         console.log("Note saved successfully");
+        setStatusMessage("Note saved successfully");
+        setShowStatus(true);
       })
       .catch((error) => {
         // Error occurred while saving the note
         console.error("Error occurred while saving the note", error);
+        setStatusMessage("Error occurred while saving the note");
+        setShowStatus(true);
       });
     console.log("Note Data:", noteData);
   };
@@ -194,6 +204,41 @@ const QuestionDetail = ({ onClickBack, questionData, surveyStatus }) => {
           </Card>
         ))}
       </div>
+      <Modal
+        open={showStatus}
+        onClose={() => setShowStatus(false)}
+        closeAfterTransition
+        BackdropComponent={Backdrop}
+        BackdropProps={{
+          timeout: 500,
+        }}
+      >
+        <Fade in={showStatus}>
+          <div className="status__modal">
+            <Typography variant="h6">{statusMessage}</Typography>
+          </div>
+        </Fade>
+      </Modal>
+      <Snackbar
+        open={showStatus}
+        autoHideDuration={3000}
+        onClose={() => setShowStatus(false)}
+        message={statusMessage}
+        anchorOrigin={{
+          vertical: "center",
+          horizontal: "center",
+        }}
+        sx={{
+          background: "#333",
+          color: "#fff",
+          "& .MuiSnackbarContent-root": {
+            justifyContent: "center",
+          },
+          "& .MuiSnackbarContent-message": {
+            fontWeight: "bold",
+          },
+        }}
+      />
     </div>
   );
 };
