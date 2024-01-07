@@ -1,29 +1,27 @@
 import React, { useEffect, useState } from "react";
 import PageTitle from "../../components/pagetitle/PageTitle";
-import UserNote from "../../components/note/UserNote";
+import UserNote from "../../components/auditmeeting/UserNote";
 import { Button, Box, ButtonGroup } from "@mui/material";
 
 const Audit = () => {
   const [data, setData] = useState(null);
+  const [activeFilter, setActiveFilter] = useState("Waiting");
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [activeFilter]);
 
   const fetchData = async () => {
     try {
       const response = await fetch(
-        // "https://mocki.io/v1/4da9a637-4163-432b-a93b-4c5e99d73762"
-        "https://mocki.io/v1/4da9a637-4163-432b-a93b-4c5e99d73762");
+        `http://127.0.0.1:5000/meeting/${activeFilter}`
+      );
       const data = await response.json();
       setData(data);
     } catch (error) {
       console.error("Error fetching API:", error);
     }
   };
-
-
-  const [activeFilter, setActiveFilter] = useState("Waiting");
 
   const handleFilterClick = (filter) => {
     setActiveFilter(filter);
@@ -87,7 +85,7 @@ const Audit = () => {
           width: "90%",
         }}
       >
-        {data && (
+        {data ? (
           <ul>
             {data.auditees.map((auditee) => (
               <UserNote
@@ -99,6 +97,8 @@ const Audit = () => {
               />
             ))}
           </ul>
+        ) : (
+          <p>Loading...</p>
         )}
       </Box>
     </Box>

@@ -17,10 +17,10 @@ const sidebarNavItems = [
     section: "note",
   },
   {
-    display: "Audit Metting",
+    display: "Audit Meeting",
     icon: <i className="bx bxs-spreadsheet"></i>,
-    to: "/auditmetting",
-    section: "auditmetting",
+    to: "/auditmeeting",
+    section: "auditmeeting",
   },
   {
     display: "Member",
