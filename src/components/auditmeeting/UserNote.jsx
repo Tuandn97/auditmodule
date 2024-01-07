@@ -8,7 +8,6 @@ import {
   Divider,
   Card,
   Grid,
-  Button,
 } from "@mui/material";
 const UserNote = ({ auditee, responses, questions, notes }) => {
   const userResponses = responses.filter(
