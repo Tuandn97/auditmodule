@@ -13,7 +13,6 @@ const Note = () => {
   const fetchData = async () => {
     try {
       const response = await fetch(
-        // "https://mocki.io/v1/4da9a637-4163-432b-a93b-4c5e99d73762"
         "https://mocki.io/v1/4da9a637-4163-432b-a93b-4c5e99d73762"
       );
       const data = await response.json();
@@ -33,7 +32,7 @@ const Note = () => {
       }}
     >
       <PageTitle>Notes</PageTitle>
-      {data && (
+      {data ? (
         <ul>
           {data.auditees.map((auditee) => (
             <UserNote
@@ -45,6 +44,8 @@ const Note = () => {
             />
           ))}
         </ul>
+      ) : (
+        <p>You haven't created any notes yet.</p>
       )}
     </Box>
   );

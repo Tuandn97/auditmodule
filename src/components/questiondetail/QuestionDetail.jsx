@@ -22,6 +22,7 @@ const QuestionDetail = ({ onClickBack, questionData, surveyStatus }) => {
   const [selectedResponseId, setSelectedResponseId] = useState("");
   const [statusMessage, setStatusMessage] = useState("");
   const [showStatus, setShowStatus] = useState(false);
+
   const handleSaveNote = () => {
     // Send the private and public notes to the backend
     const noteData = {
@@ -38,6 +39,12 @@ const QuestionDetail = ({ onClickBack, questionData, surveyStatus }) => {
         console.log("Note saved successfully");
         setStatusMessage("Note saved successfully");
         setShowStatus(true);
+
+        // Disable note form and clear note fields
+        setShowNote(false);
+        setSelectedResponseId(null);
+        setPrivateNote("");
+        setPublicNote("");
       })
       .catch((error) => {
         // Error occurred while saving the note
@@ -47,6 +54,7 @@ const QuestionDetail = ({ onClickBack, questionData, surveyStatus }) => {
       });
     console.log("Note Data:", noteData);
   };
+
   const handleCancelNote = () => {
     // Reset the note fields
     setPrivateNote("");
