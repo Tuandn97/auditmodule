@@ -9,7 +9,7 @@ const Audit = () => {
 
   useEffect(() => {
     fetchData();
-  }, [activeFilter]);
+  },);
 
   const fetchData = async () => {
     try {
