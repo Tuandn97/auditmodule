@@ -23,6 +23,8 @@ const QuestionDetail = ({ onClickBack, questionData, surveyStatus }) => {
   const [statusMessage, setStatusMessage] = useState("");
   const [showStatus, setShowStatus] = useState(false);
   const [noteResponseIds, setNoteResponseIds] = useState([]);
+  const [saveDisabled, setSaveDisabled] = useState(false);
+  const [cancelDisabled, setCancelDisabled] = useState(false);
 
   const handleSaveNote = () => {
     // Send the private and public notes to the backend
@@ -40,12 +42,8 @@ const QuestionDetail = ({ onClickBack, questionData, surveyStatus }) => {
         console.log("Note saved successfully");
         setStatusMessage("Note saved successfully");
         setShowStatus(true);
-
-        // Disable note form and clear note fields
-        setShowNote(false);
-        setSelectedResponseId(null);
-        setPrivateNote("");
-        setPublicNote("");
+        setSaveDisabled(true);
+        setCancelDisabled(true);
       })
       .catch((error) => {
         // Error occurred while saving the note
@@ -189,9 +187,7 @@ const QuestionDetail = ({ onClickBack, questionData, surveyStatus }) => {
                       color="primary"
                       className="save_buttom"
                       onClick={handleSaveNote}
-                      disabled={noteResponseIds.includes(
-                        parseInt(selectedResponseId)
-                      )}
+                      disabled={saveDisabled}
                     >
                       Save
                     </Button>
@@ -200,6 +196,7 @@ const QuestionDetail = ({ onClickBack, questionData, surveyStatus }) => {
                       color="primary"
                       className="cancel_buttom"
                       onClick={handleCancelNote}
+                      disabled={cancelDisabled}
                     >
                       Cancle
                     </Button>

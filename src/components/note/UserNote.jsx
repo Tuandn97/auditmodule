@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import QuestionResponse from "./QuestionResponse";
 import {
   Box,
@@ -14,13 +14,15 @@ const UserNote = ({ auditee, responses, questions, notes }) => {
   const userResponses = responses.filter(
     (response) => response.auditee_id === auditee.auditee_id
   );
+  const [bookingDisabled, setBookingDisabled] = useState(false);
+
   const handleBookingAudit = async () => {
     const auditeeId = auditee.auditee_id;
     const responseIds = userResponses.map((response) => response.response_id);
-    console.log("Booking audit request data:", auditeeId, responseIds);
+    console.log("Booking auditmeeting request data:", auditeeId, responseIds);
 
     try {
-      const response = await fetch("https://example.com/api/booking-audit", {
+      const response = await fetch("http://127.0.0.1:5000/add_meeting", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -33,21 +35,22 @@ const UserNote = ({ auditee, responses, questions, notes }) => {
 
       if (response.ok) {
         // The request was successful
-        console.log("Booking audit request sent successfully");
+        console.log("Booking auditmeeting request sent successfully");
         const data = await response.json();
         console.log("Response data:", data);
+        setBookingDisabled(true);
         // Perform any other necessary actions
       } else {
         // The request was not successful
         console.log(
-          "Error sending booking audit request:",
+          "Error sending booking auditmeeting request:",
           response.status,
           response.statusText
         );
         // Handle the error appropriately
       }
     } catch (error) {
-      console.log("Error sending booking audit request:", error.message);
+      console.log("Error sending booking auditmeeting request:", error.message);
       // Handle the error appropriately
     }
   };
@@ -111,7 +114,11 @@ const UserNote = ({ auditee, responses, questions, notes }) => {
           padding: "16px",
         }}
       >
-        <Button variant="contained" onClick={handleBookingAudit}>
+        <Button
+          variant="contained"
+          onClick={handleBookingAudit}
+          disabled={bookingDisabled}
+        >
           Booking audit
         </Button>
       </Box>
